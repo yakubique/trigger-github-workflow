@@ -1,0 +1,30 @@
+name: "Trigger Github workflow"
+description: "Trigger Github workflow as an action"
+author: Vladimir Levin
+branding:
+  icon: code
+  color: purple
+inputs:
+  repository:
+    description: Owner/repository 
+    required: true
+  workflow:
+    description: Workflow ID or workflow's filename
+    required: true
+  token: 
+    description: Github token 
+    default: ${{ github.token }}
+    required: true
+  ref:
+    description: Reference branch 
+    default: main
+    required: true
+  params:
+    description: Workflow parameters as JSON string
+    required: false
+outputs:
+  result:
+    description: Response from Github API
+runs:
+  using: 'node20'
+  main: 'action/index.js'

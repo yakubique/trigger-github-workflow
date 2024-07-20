@@ -1,0 +1,22 @@
+name: Test `trigger-github-workflow` action
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  test-trigger-github-workflow:
+    runs-on: [ 'ubuntu-latest' ]
+    name: Test
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Test
+        id: test
+        uses: ./
+        with:
+          name: test-*
+      - name: Check
+        run: |
+          echo "${{ steps.test.outputs.result }}"
+          test "${{ steps.test.outputs.result }}" = "[test-2,test-1]"
