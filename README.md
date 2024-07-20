@@ -11,19 +11,39 @@ Trigger Github workflow as an action
 ## Usage
 ```yaml
 - name: Trigger Github workflow
-  id: list
   uses: yakubique/trigger-github-workflow@v1
   with:
-    name: test-*
+    repository: yakubique/test-repository
+    workflow: build-and-push.yaml
 
 ```
 
 ## Inputs
 
+<!-- AUTO-DOC-INPUT:START - Do not remove or modify this section -->
+
+|   INPUT    |  TYPE  | REQUIRED |         DEFAULT         |            DESCRIPTION             |
+|------------|--------|----------|-------------------------|------------------------------------|
+|   params   | string |  false   |                         | Workflow parameters as JSON string |
+|    ref     | string |   true   |        `"main"`         |          Reference branch          |
+| repository | string |   true   |                         |          Owner/repository          |
+|   token    | string |   true   | `"${{ github.token }}"` |            Github token            |
+|  workflow  | string |   true   |                         | Workflow ID or workflow's filename |
+
+<!-- AUTO-DOC-INPUT:END -->
+
 
 
 
 ## Outputs
+
+<!-- AUTO-DOC-OUTPUT:START - Do not remove or modify this section -->
+
+| OUTPUT |  TYPE  |       DESCRIPTION        |
+|--------|--------|--------------------------|
+| result | string | Response from Github API |
+
+<!-- AUTO-DOC-OUTPUT:END -->
 
 
 
