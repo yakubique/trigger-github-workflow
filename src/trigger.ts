@@ -6,11 +6,8 @@ export async function triggerWorkflow(inputs: ActionInputs): Promise<any> {
         auth: inputs.token
     })
 
-    const [owner, repo] = inputs.repository;
+    const [owner, repo] = inputs.repository.split('/');
     const body = {
-        owner,
-        repo,
-        workflow_id: inputs.workflowID,
         ref: inputs.ref,
         headers: {
             'X-GitHub-Api-Version': '2022-11-28'
@@ -21,7 +18,7 @@ export async function triggerWorkflow(inputs: ActionInputs): Promise<any> {
         body.inputs = JSON.parse(inputs.params);
     }
 
-    const response = await octokit.request('POST /repos/{owner}/{repo}/actions/workflows/{workflow_id}/dispatches', body);
+    const response = await octokit.request(`POST /repos/${owner}/${repo}/actions/workflows/${inputs.workflowID}/dispatches`, body);
 
     return response;
 }

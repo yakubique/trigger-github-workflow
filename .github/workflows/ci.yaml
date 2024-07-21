@@ -1,8 +1,7 @@
-
 name: Run tests
 
 on:
-  push:
+  workflow_dispatch:
 
 jobs:
   jest:

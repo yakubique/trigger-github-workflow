@@ -9,13 +9,26 @@ Trigger Github workflow as an action
 [Usage workflow](https://github.com/yakubique/trigger-github-workflow/actions/workflows/test-myself.yaml)
 
 ## Usage
+
+Don't forget to elevate permissions:
+```yaml
+permissions:
+  actions: write
+```
+
+Master workflow:
 ```yaml
 - name: Trigger Github workflow
   uses: yakubique/trigger-github-workflow@v1
   with:
     repository: yakubique/test-repository
     workflow: build-and-push.yaml
+```
 
+Callable workflow needs:
+```yaml
+on:
+  workflow_dispatch:
 ```
 
 ## Inputs
